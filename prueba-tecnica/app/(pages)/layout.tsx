@@ -1,4 +1,5 @@
-import '../styles/globals.css'
+import '../../styles/globals.css'
+import Provider from './SessionProvider'
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <Provider>
+        <body>{children}</body>
+      </Provider>
     </html>
   )
 }

@@ -1,19 +1,21 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+"use client"
+import { signIn, signOut, useSession } from 'next-auth/react'
 import styles from './page.module.css'
 
-const inter = Inter({ subsets: ['latin'] })
-
 export default function Home() {
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <main className={styles.main}>
 
-
-      
-        <input type="text" />
-       
-
-
+        {
+          session
+          ? <>
+          <span>{session.user.user.username}</span>
+          <input type="button" className={styles.button} value={"LogOut"} onClick={()=>signOut()} />
+          </>
+          :<input type="button" className={styles.button} value={"LogIn"} onClick={()=>signIn()} />
+        }
     </main>
   )
 }
