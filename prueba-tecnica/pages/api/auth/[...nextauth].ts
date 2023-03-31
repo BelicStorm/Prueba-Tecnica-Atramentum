@@ -11,7 +11,7 @@ export default NextAuth({
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        username: { label: "Username", type: "text", placeholder: "userName" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials:any, req) {
@@ -36,12 +36,24 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      return { ...token, ...user };
+    async jwt({ token, user }:any) {
+      if (token || user) {
+        token.userRole = "admin";
+      }
+      return {...token, ...user};
     },
-    async session({ session, token, user }) {
-      session.user = token as any;
+    async redirect({ url, baseUrl }) {
+      return baseUrl
+    },
+    async session({ session, token, user }) {    
+      // console.log(process.env.SECRET);
+      
+      session = {
+        token:token.token,
+        user: token.user
+      } as any;
       return session;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 });
