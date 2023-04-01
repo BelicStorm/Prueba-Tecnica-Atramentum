@@ -1,19 +1,41 @@
-import { signIn, signOut, useSession } from 'next-auth/react'
+import React from "react";
 
-const Nav = () => {
-  const { data: session } = useSession();
-    return ( 
-        <nav>
-            {
-            session
-              ? <>
-              <span></span>
-              <input type="button"  value={"LogOut"} onClick={()=>signOut()} />
-              </>
-              :<input type="button" value={"LogIn"} onClick={()=>signIn()} />
-          }
-        </nav>
-     );
-}
- 
-export default Nav;
+import { useSession, signOut, signIn } from "next-auth/react";
+
+const Header = () => {
+  const { data } = useSession();
+
+  return (
+    <nav className="navbar navbar-light bg-light row justify-content-center sticky-top">
+      <div className="container">
+        <div className="col-3 p-0">
+          <a className="navbar-brand" style={{ marginLeft: "20px" }} href="#">
+            Next.13 Authentication
+          </a>
+        </div>
+
+        <div className="col-3 mt-3 mt-md-0 text-center d-flex flex-row">
+          {data?.user ? (
+            <>
+              {/* <span style={{ marginRight: "15px" }}>
+                Hi, {data?.user?.name}
+              </span> */}
+
+              <span style={{ cursor: "pointer" }} onClick={() => signOut()}>
+                {" "}
+                Logout
+              </span>
+            </>
+          ) : (
+            <span style={{ cursor: "pointer" }} onClick={() => signIn()}>
+                {" "}
+                Login
+            </span>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Header;

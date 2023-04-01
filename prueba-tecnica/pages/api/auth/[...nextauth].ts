@@ -2,6 +2,9 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { toFormData } from "../../../utils";
 export default NextAuth({
+  session:{
+    strategy:"jwt"
+  },
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
@@ -42,9 +45,9 @@ export default NextAuth({
       }
       return {...token, ...user};
     },
-    async redirect({ url, baseUrl }) {
-      return baseUrl
-    },
+  //   async redirect({ url, baseUrl }) {
+  //     return baseUrl
+  //   },
     async session({ session, token, user }) {    
       // console.log(process.env.SECRET);
       

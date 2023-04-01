@@ -1,12 +1,11 @@
 import apiFetch from "../core"
 
-const urBase = process.env.URL_BASE ?? "";
-
+const urlBase = process.env.URL_BASE;
 const api = {
-    getAllUsers: async (token:string)=>{
+    getAllUsers: async (token="empty")=>{
         try {
             return await apiFetch({
-                url:`${urBase}/customers/`,
+                url:`${urlBase}customers/`,
                 contentType:"application/json",
                 method:"GET",
                 headers: {Authorization:`Bearer ${token}`}
@@ -18,7 +17,7 @@ const api = {
     getUserById: async (token:string,userId:string)=>{
         try {
             return await apiFetch({
-                url:`${urBase}/customers/${userId}`,
+                url:`${urlBase}/customers/${userId}`,
                 contentType:"application/json",
                 method:"GET",
                 headers: {Authorization:`Bearer ${token}`}
