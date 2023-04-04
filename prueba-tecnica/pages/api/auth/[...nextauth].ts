@@ -26,7 +26,7 @@ export default NextAuth({
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
           },
-          body: toFormData(credentials)
+          body: JSON.stringify(toFormData(credentials))
         });
         const user = await res.json();
 

@@ -68,7 +68,7 @@ const MakeTableRows = ({ tableContent }: TableRowProps) => {
                                 Object.keys(TableStructure).map((element: any) => {
                                     return (
 
-                                        <td className="px-5 py-5 text-center">
+                                        <td key={`tableComponent-${id}-${element}`}  className="px-5 py-5 text-center">
                                             {
                                                 element === "activated"
                                                     ? content[element]
@@ -126,6 +126,8 @@ const MakeTableHead = () => {
 
 const UserTable = ({ data }: TableProps) => {
     const { content, totalElements, totalPages } = data
+    // console.log(data);
+    
     return (
         <section className="border-b border-white bg-black">
             <div className="mx-auto max-w-7xl px-8 lg:px-24 py-6 lg:py-12 border-x border-white">
