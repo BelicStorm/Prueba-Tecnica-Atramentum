@@ -11,5 +11,8 @@ module.exports = {
   theme: {
     extend: {},
   },
+  variants: {
+    cursor: ({ after }) => after(['disabled'])
+  },
   plugins: [],
 }

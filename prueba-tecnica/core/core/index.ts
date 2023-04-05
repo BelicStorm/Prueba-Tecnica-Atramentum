@@ -9,7 +9,6 @@ interface apiFetchProps {
 }
 
 const apiFetch = async ({url, params, method, contentType, headers={}}:apiFetchProps)=>{
-  console.log(params, "aaaaaaaaaaaaaa");
     const body = params ? {body: params} : {}
     const response = await fetch(url, {
         method: method, // *GET, POST, PUT, DELETE, etc.

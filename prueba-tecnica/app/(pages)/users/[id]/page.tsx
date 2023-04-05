@@ -5,7 +5,8 @@ import useSWRMutation from 'swr/mutation'
 import api from "../../../../core/users";
 import { UserBasicInfo } from "../../../../types/user.types";
 import ErrorBoundary from "../../../../components/ErrorHandlers/ErrorBoundary.component";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { ToasterContext } from "../../layout";
 
 
 interface UserDetailsProps {
@@ -16,9 +17,7 @@ interface UserDetailsProps {
 
 interface UserFormProps extends UserBasicInfo {
     onSave: Function,
-    token: any,
-    id: any,
-    originPage: any
+    isMutating:boolean
 }
 const ValdiateForm = {
     userName: (data: any) => {
@@ -201,8 +200,9 @@ const UserForm = (props: UserFormProps) => {
                 </div>
                 <div className="col-span-full">
                     <button className="relative flex items-center px-4 border border-white py-4 text-white justify-center 
-                                            hover:bg-zinc-800 bg-black hover:border-white/50 gap-3 w-full"
+                                            hover:bg-zinc-800 bg-black hover:border-white/50 gap-3 w-full disabled:cursor-not-allowed"
                         onClick={async () => await onSubmit()}
+                        disabled={props.isMutating}
                         type="button">
                         Send
                     </button>
@@ -221,15 +221,18 @@ const UserDetails = ({ params }: UserDetailsProps) => {
     const mutateFetcher: Fetcher = (data: any) => api.putUserById(data.token, data.id, data.updateParams)
     const { trigger, isMutating } = useSWRMutation("a", (url: any, { arg }: { arg: any }) => mutateFetcher(arg))
 
+    const Toaster = useContext(ToasterContext)
+
     const onSave = async (updateParams: any) => {
         if (session) {
-
             try {
-                const result = await trigger({
+                await trigger({
                     token: session.token, id: params.id, updateParams: { ...updateParams, originPage: data.originPage }
                 })
+                Toaster.current.addMessage({ mode:"success", message: "Usuario Actualizado con exito" })
             } catch (e) {
                 console.log(e)
+                Toaster.current.addMessage({ mode:"error", message: `Error: ${e}` })
             }
 
 
@@ -239,7 +242,7 @@ const UserDetails = ({ params }: UserDetailsProps) => {
     }
     return (
         <ErrorBoundary>
-            <UserForm {...data} onSave={onSave} />
+            <UserForm {...data} onSave={onSave} isMutating={isMutating} />
         </ErrorBoundary>
     );
 }

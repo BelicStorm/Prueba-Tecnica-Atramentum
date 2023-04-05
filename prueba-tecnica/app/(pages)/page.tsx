@@ -18,9 +18,7 @@ const HomePage = () => {
             <ErrorBoundary>
                 {
                     data
-                        ? <Suspense fallback={<span>Loading</span>}>
-                            <UserTable data={data} />
-                        </Suspense>
+                        ? <UserTable data={data} />
                         : <HomeInfo />
                 }
             </ErrorBoundary>

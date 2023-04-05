@@ -4,6 +4,8 @@ import { useSession, signOut, signIn } from "next-auth/react";
 
 const Header = () => {
   const { data } = useSession();
+  console.log();
+  
   return (
     <div className="w-full mx-auto bg-black border-b border-grey-600 justify-center">
       <div className="flex w-full flex-col lg:flex-row lg:items-center lg:justify-between max-w-9xl mx-auto px-8 
@@ -22,7 +24,7 @@ const Header = () => {
                 </div>
               </a>
             </div >
-            <span className="cursor-pointer font-bold text-white text-sm duration-200 ease-in-out focus:outline-none focus:shadow-none focus:text-white/5 hover:text-white my-0 py-2 transform transition"
+            <span className="cursor-pointer font-bold text-white text-sm duration-200 ease-in-out focus:outline-none focus:shadow-none focus:text-white/5 hover:text-white my-0 py-2 transition"
               onClick={() => signOut()} >
               Logout
             </span>
@@ -40,7 +42,7 @@ const Header = () => {
                 </div>
               </a>
             </div >
-            <span className="cursor-pointer font-bold text-white/60 text-sm duration-200 ease-in-out focus:outline-none focus:shadow-none focus:text-white/5 hover:text-white my-0 py-2 transform transition"
+            <span className="cursor-pointer font-bold text-white/60 text-sm duration-200 ease-in-out focus:outline-none focus:shadow-none focus:text-white/5 hover:text-white my-0 py-2 transition"
               onClick={() => signIn()} >
               Login
             </span>
