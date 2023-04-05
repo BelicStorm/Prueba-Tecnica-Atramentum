@@ -1,0 +1,2 @@
+NEXTAUTH_SECRET="E5JIwhIlPaYbK0uJPSGjYSvmp7Y8Dz/cc7JzJ66jBsQ="
+URL_BASE="https://erp-api-dev-app.azurewebsites.net/akralogic/erp/api/"
