@@ -18,7 +18,7 @@ const Header = () => {
                   <div className="ml-3">
                     <p
                       className="uppercase italic font-medium text-white group-hover:text-gray-300">
-                      Prueba Tecnica
+                      Prueba técnica
                     </p>
                   </div>
                 </div>
@@ -36,7 +36,7 @@ const Header = () => {
                 <div className="flex items-center">
                   <div className="ml-3">
                     <p className="uppercase italic font-bold text-white group-hover:text-gray-300">
-                      Prueba Tecnica
+                      Prueba técnica
                     </p>
                   </div>
                 </div>

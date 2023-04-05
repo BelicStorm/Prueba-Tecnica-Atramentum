@@ -8,7 +8,7 @@ const HomeInfo = () => {
                 <div className="mx-auto max-w-7xl px-8 lg:px-24 py-12 border-x bg-white border-black">
                     <div className="relative flex justify-start">
                         <span className="bg-white pr-3 text-4xl lg:text-9xl font-black tracking-tight text-black font-display"
-                        ><span className="font-thin text-accent-400">✺</span> Descripción de la prueba Tecnica
+                        ><span className="font-thin text-accent-400">✺</span> Descripción de la prueba técnica
                         </span>
                     </div>
                 </div>

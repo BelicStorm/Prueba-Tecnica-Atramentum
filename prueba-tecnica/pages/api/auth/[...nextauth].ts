@@ -19,7 +19,7 @@ export default NextAuth({
       },
       async authorize(credentials: any, req) {
         // Add logic here to look up the user from the credentials supplied
-        const res = await fetch("https://erp-api-dev-app.azurewebsites.net/akralogic/erp/api/authenticate", {
+        const res = await fetch(process.env.URL_BASE+"authenticate", {
           method: "POST",
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

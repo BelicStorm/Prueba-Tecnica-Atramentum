@@ -6,6 +6,7 @@ import Header from "../../components/LayoutComponents/nav.component";
 import '../../styles/globals.css';
 import ErrorBoundary from "../../components/ErrorHandlers/ErrorBoundary.component";
 import { ToastPortal } from "../../components/ToasterComponents";
+import Head from "next/head";
 
 interface Props {
   children: ReactNode
@@ -18,11 +19,11 @@ export default function RootLayout({ children }: Props) {
 
   return (
     <html>
-      <head />
       <body className="bg-black">
         <ErrorBoundary>
           <SessionProvider>
             <ToasterContext.Provider value={toastRef}>
+             
               <Header />
               {children}
             </ToasterContext.Provider>
