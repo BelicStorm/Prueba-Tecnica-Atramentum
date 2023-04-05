@@ -2,8 +2,8 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { toFormData } from "../../../utils";
 export default NextAuth({
-  session:{
-    strategy:"jwt"
+  session: {
+    strategy: "jwt"
   },
   providers: [
     CredentialsProvider({
@@ -17,16 +17,14 @@ export default NextAuth({
         username: { label: "Username", type: "text", placeholder: "userName" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials:any, req) {
+      async authorize(credentials: any, req) {
         // Add logic here to look up the user from the credentials supplied
-       
-        
         const res = await fetch("https://erp-api-dev-app.azurewebsites.net/akralogic/erp/api/authenticate", {
           method: "POST",
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
           },
-          body: JSON.stringify(toFormData(credentials))
+          body: toFormData(credentials)
         });
         const user = await res.json();
 
@@ -39,20 +37,20 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }:any) {
+    async jwt({ token, user }: any) {
       if (token || user) {
         token.userRole = "admin";
       }
-      return {...token, ...user};
+      return { ...token, ...user };
     },
-  //   async redirect({ url, baseUrl }) {
-  //     return baseUrl
-  //   },
-    async session({ session, token, user }) {    
+    //   async redirect({ url, baseUrl }) {
+    //     return baseUrl
+    //   },
+    async session({ session, token, user }) {
       // console.log(process.env.SECRET);
-      
+
       session = {
-        token:token.token,
+        token: token.token,
         user: token.user
       } as any;
       return session;
