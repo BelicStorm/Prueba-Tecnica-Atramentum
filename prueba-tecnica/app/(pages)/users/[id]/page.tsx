@@ -231,7 +231,7 @@ const UserDetails = ({ params }: UserDetailsProps) => {
                 })
                 Toaster.current.addMessage({ mode:"success", message: "Usuario Actualizado con exito" })
             } catch (e) {
-                console.log(e)
+                // console.log(e)
                 Toaster.current.addMessage({ mode:"error", message: `Error: ${e}` })
             }
 

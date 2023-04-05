@@ -4,7 +4,7 @@ import { useSession, signOut, signIn } from "next-auth/react";
 
 const Header = () => {
   const { data } = useSession();
-  console.log();
+  // console.log();
   
   return (
     <div className="w-full mx-auto bg-black border-b border-grey-600 justify-center">
