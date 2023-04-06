@@ -7,9 +7,6 @@ import HomeInfo from "../../components/HomeComponents/StaticHomeInfo.component";
 import UserTable from "../../components/UserComponents/UserTable.component";
 import ErrorBoundary from "../../components/ErrorHandlers/ErrorBoundary.component";
 
-export const metadata = {
-    title: 'Prueba Atrementum',
-  };
 const HomePage = () => {
     const { data: session } = useSession()
     const fetcher: Fetcher<any, string> = (token) => api.getAllUsers(token)

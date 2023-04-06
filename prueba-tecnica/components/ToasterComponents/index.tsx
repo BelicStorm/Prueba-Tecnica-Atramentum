@@ -4,12 +4,12 @@ import { useToastAutoClose, useToastPortal } from '../../hooks/ToasterHooks';
 import ReactDOM from 'react-dom';
 import { uuid } from '../../utils';
 
-interface ToastProps{
-    mode:string
-    onClose?:any
-    message:string
+interface ToastProps {
+    mode: string
+    onClose?: any
+    message: string
 }
-export const Toast = ({ mode, onClose, message }: ToastProps) => {
+const Toast = ({ mode, onClose, message }: ToastProps) => {
     const classes = useMemo(
         () => [styles.toast, styles[mode]].join(' '),
         [mode],
@@ -22,7 +22,7 @@ export const Toast = ({ mode, onClose, message }: ToastProps) => {
     );
 };
 
-export const ToastPortal = forwardRef(
+const ToastPortal = forwardRef(
     ({ autoClose = false, autoCloseTime = 5000 }: any, ref) => {
         const [toasts, setToasts] = useState<any>([]);
         const { loaded, portalId }: any = useToastPortal();
@@ -64,3 +64,6 @@ export const ToastPortal = forwardRef(
         );
     },
 );
+ToastPortal.displayName = "ToastPortal";
+
+export {ToastPortal, Toast}
